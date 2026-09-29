@@ -1,0 +1,2 @@
+MORAI-ROS_morai_msgs:aim_week1:aim_week2
+-DCATKIN_DEVEL_PREFIX=/root/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/root/catkin_ws/install -G Unix Makefiles
