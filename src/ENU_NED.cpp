@@ -131,18 +131,24 @@ void NED_to_ENU(double ned_roll, double ned_pitch, double ned_yaw, double &enu_r
 
     void imuCallback(const sensor_msgs::Imu::ConstPtr& msg)
 {
-    double x = msg->orientation.x;
-    double y = msg->orientation.y;
-    double z = msg->orientation.z;
-    double w = msg->orientation.w;
+    double qx = msg->orientation.x;
+    double qy = msg->orientation.y;
+    double qz = msg->orientation.z;
+    double qw = msg->orientation.w;
 
-    double roll = atan2(2.0 * (w*x + y*z),
-                        1.0 - 2.0 * (x*x + y*y));
+    double sinr_cosp = 2 * (qw * qx + qy * qz);
+    double cosr_cosp = 1 - 2 * (qx * qx + qy * qy);
+    roll = atan2(sinr_cosp, cosr_cosp) * 180.0 / M_PI;
 
-    double pitch = asin(2.0 * (w*y - z*x));
+    double sinp = 2 * (qw * qy - qz * qx);
+    if (fabs(sinp) >= 1)
+        pitch = copysign(M_PI / 2, sinp) * 180.0 / M_PI;
+    else
+        pitch = asin(sinp) * 180.0 / M_PI;
 
-    double yaw = atan2(2.0 * (w*z + x*y),
-                       1.0 - 2.0 * (y*y + z*z));
+    double siny_cosp = 2 * (qw * qz + qx * qy);
+    double cosy_cosp = 1 - 2 * (qy * qy + qz * qz);
+    yaw = atan2(siny_cosp, cosy_cosp) * 180.0 / M_PI;
 
     roll  = roll  * 180.0 / M_PI;
     pitch = pitch * 180.0 / M_PI;
