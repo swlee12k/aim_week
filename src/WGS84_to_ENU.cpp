@@ -1,6 +1,5 @@
-#include <ros/ros.h>
-#include <morai_msgs/GPSMessage.h>
 #include <cmath>
+#include <aim_week2/Transform.hpp>
 
 void WGS84_to_ENU(double latitude, double longitude, double altitude, double &east, double &north, double &up)
 {
@@ -33,35 +32,4 @@ void WGS84_to_ENU(double latitude, double longitude, double altitude, double &ea
     east=-sin(lambda0_rad)*(x-x0)+cos(lambda0_rad)*(y-y0);
     north=-sin(phi0_rad)*cos(lambda0_rad)*(x-x0)-sin(phi0_rad)*sin(lambda0_rad)*(y-y0)+cos(phi0_rad)*(z-z0);
     up=cos(phi0_rad)*cos(lambda0_rad)*(x-x0)+cos(phi0_rad)*sin(lambda0_rad)*(y-y0)+sin(phi0_rad)*(z-z0);
-}
-
-void gpsENUCallback(const morai_msgs::GPSMessage::ConstPtr& msg)
-{
-    double latitude = msg->latitude;
-    double longitude = msg->longitude;
-    double altitude = msg->altitude;
-
-    double east;
-    double north;
-    double up;
-
-    WGS84_to_ENU(latitude, longitude, altitude, east, north, up);
-
-    ROS_INFO("WGS84 : Latitude: %f, Longitude: %f, Altitude: %f", latitude, longitude, altitude);
-    ROS_INFO("ENU : East: %f, North: %f, Up: %f", east, north, up);
-}
-
-int main(int argc, char **argv)
-{
-    ros::init(argc, argv, "WGS84_subscriber");
-    ros::NodeHandle n;
-    ros::Subscriber sub=n.subscribe("/gps", 1000, gpsENUCallback);
-    ros::Rate loop_rate(10);
-
-    while (ros::ok())
-    {
-        ros::spinOnce();
-        loop_rate.sleep();
-    }
-    return 0;
 }

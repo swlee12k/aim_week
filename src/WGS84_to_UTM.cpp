@@ -1,6 +1,5 @@
-#include <ros/ros.h>
-#include <morai_msgs/GPSMessage.h>
 #include <cmath>
+#include <aim_week2/Transform.hpp>
 
 void WGS84_to_UTM(double latitude, double longitude, double &easting, double &northing)
 {
@@ -9,7 +8,6 @@ void WGS84_to_UTM(double latitude, double longitude, double &easting, double &no
     const double k0=0.9996; 
 
     double M0=0.0;
-    double phi0=0.0; 
 
     double e2=f*(2-f); 
     double ep2=e2/(1-e2); 
@@ -33,35 +31,12 @@ void WGS84_to_UTM(double latitude, double longitude, double &easting, double &no
     double y=k0*(M-M0+N*tan(phi_rad)*(((pow(A,2)/2)+(5-T+9*C+4*pow(C,2))*(pow(A,4)/24))+(61-58*T+pow(T,2)+600*C-330*ep2)*(pow(A,6)/720)));
     
     easting=x+500000;
-    northing=y;
-}
-
-void gpsUTMCallback(const morai_msgs::GPSMessage::ConstPtr& msg)
-{
-    double latitude = msg->latitude;
-    double longitude = msg->longitude;
-    double altitude = msg->altitude;
-
-    double easting;
-    double northing;
-
-    WGS84_to_UTM(latitude, longitude, easting, northing);
-
-    ROS_INFO("WGS84 : Latitude: %f, Longitude: %f, Altitude: %f", latitude, longitude, altitude);
-    ROS_INFO("UTM : Easting: %f, Northing: %f", easting, northing);
-}
-
-int main(int argc, char **argv)
-{
-    ros::init(argc, argv, "WGS84_subscriber");
-    ros::NodeHandle n;
-    ros::Subscriber sub=n.subscribe("/gps", 1000, gpsUTMCallback);
-    ros::Rate loop_rate(10);
-
-    while (ros::ok())
+    if (latitude < 0)
     {
-        ros::spinOnce();
-        loop_rate.sleep();
+    northing = y + 10000000;
     }
-   return 0;
+    else
+    {
+    northing = y;
+    }
 }

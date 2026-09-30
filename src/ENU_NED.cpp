@@ -1,6 +1,5 @@
-#include <ros/ros.h>
-#include <sensor_msgs/Imu.h>
 #include <cmath>
+#include <aim_week2/Transform.hpp>
 
 void multiplyMatrices(double A[3][3], double B[3][3], double result[3][3])
 {
@@ -127,64 +126,4 @@ void NED_to_ENU(double ned_roll, double ned_pitch, double ned_yaw, double &enu_r
     enu_roll=atan2(R_enu[2][1], R_enu[2][2]) * 180.0 / M_PI;
     enu_pitch=asin(-R_enu[2][0]) * 180.0 / M_PI;
     enu_yaw=atan2(R_enu[1][0], R_enu[0][0]) * 180.0 / M_PI; 
-}
-
-    void imuCallback(const sensor_msgs::Imu::ConstPtr& msg)
-{
-    double qx = msg->orientation.x;
-    double qy = msg->orientation.y;
-    double qz = msg->orientation.z;
-    double qw = msg->orientation.w;
-
-    double sinr_cosp = 2 * (qw * qx + qy * qz);
-    double cosr_cosp = 1 - 2 * (qx * qx + qy * qy);
-    roll = atan2(sinr_cosp, cosr_cosp) * 180.0 / M_PI;
-
-    double sinp = 2 * (qw * qy - qz * qx);
-    if (fabs(sinp) >= 1)
-        pitch = copysign(M_PI / 2, sinp) * 180.0 / M_PI;
-    else
-        pitch = asin(sinp) * 180.0 / M_PI;
-
-    double siny_cosp = 2 * (qw * qz + qx * qy);
-    double cosy_cosp = 1 - 2 * (qy * qy + qz * qz);
-    yaw = atan2(siny_cosp, cosy_cosp) * 180.0 / M_PI;
-
-    roll  = roll  * 180.0 / M_PI;
-    pitch = pitch * 180.0 / M_PI;
-    yaw   = yaw   * 180.0 / M_PI;
-
-    double ned_roll, ned_pitch, ned_yaw;
-    ENU_to_NED(roll, pitch, yaw,
-               ned_roll, ned_pitch, ned_yaw);
-
-    double enu_roll, enu_pitch, enu_yaw;
-    NED_to_ENU(ned_roll, ned_pitch, ned_yaw,
-               enu_roll, enu_pitch, enu_yaw);
-
-    ROS_INFO("IMU ENU  : Roll: %.2f, Pitch: %.2f, Yaw: %.2f",
-             roll, pitch, yaw);
-
-    ROS_INFO("ENU->NED : Roll: %.2f, Pitch: %.2f, Yaw: %.2f",
-             ned_roll, ned_pitch, ned_yaw);
-
-    ROS_INFO("NED->ENU : Roll: %.2f, Pitch: %.2f, Yaw: %.2f",
-             enu_roll, enu_pitch, enu_yaw);
-}
-    
-
-int main(int argc, char **argv)
-{
-    ros::init(argc, argv, "Imu_subscriber");
-    ros::NodeHandle n;
-    ros::Subscriber sub=n.subscribe("/Imu", 1000, imuCallback);
-    ros::Rate loop_rate(10);
-
-    while (ros::ok())
-    {
-        ros::spinOnce();
-        loop_rate.sleep();
-    }
-
-    return 0;
 }
