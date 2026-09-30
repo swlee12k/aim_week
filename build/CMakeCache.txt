@@ -491,6 +491,9 @@ message_runtime_DIR:PATH=/opt/ros/noetic/share/message_runtime/cmake
 //Value Computed by CMake
 morai_msgs_BINARY_DIR:STATIC=/root/catkin_ws/build/MORAI-ROS_morai_msgs
 
+//The directory containing a CMake configuration file for morai_msgs.
+morai_msgs_DIR:PATH=/root/catkin_ws/devel/share/morai_msgs/cmake
+
 //Value Computed by CMake
 morai_msgs_SOURCE_DIR:STATIC=/root/catkin_ws/src/MORAI-ROS_morai_msgs
 
@@ -514,6 +517,9 @@ rospy_DIR:PATH=/opt/ros/noetic/share/rospy/cmake
 
 //The directory containing a CMake configuration file for rostime.
 rostime_DIR:PATH=/opt/ros/noetic/share/rostime/cmake
+
+//The directory containing a CMake configuration file for sensor_msgs.
+sensor_msgs_DIR:PATH=/opt/ros/noetic/share/sensor_msgs/cmake
 
 //The directory containing a CMake configuration file for std_msgs.
 std_msgs_DIR:PATH=/opt/ros/noetic/share/std_msgs/cmake

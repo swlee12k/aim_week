@@ -3,6 +3,6 @@ prefix=/root/catkin_ws/install
 Name: aim_week2
 Description: Description of aim_week2
 Version: 0.0.0
-Cflags: 
+Cflags: -I${prefix}/include
 Libs: -L${prefix}/lib 
-Requires: 
+Requires: roscpp rospy std_msgs morai_msgs sensor_msgs

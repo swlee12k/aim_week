@@ -90,29 +90,6 @@ list_install_components/fast: list_install_components
 
 .PHONY : list_install_components/fast
 
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
-
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-
-.PHONY : test/fast
-
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -134,6 +111,29 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
+
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+
+.PHONY : test/fast
+
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -168,19 +168,19 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-aim_week2/CMakeFiles/roscpp_generate_messages_cpp.dir/rule:
-	cd /root/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 aim_week2/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
-.PHONY : aim_week2/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
+aim_week2/CMakeFiles/main.dir/rule:
+	cd /root/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 aim_week2/CMakeFiles/main.dir/rule
+.PHONY : aim_week2/CMakeFiles/main.dir/rule
 
 # Convenience name for target.
-roscpp_generate_messages_cpp: aim_week2/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
+main: aim_week2/CMakeFiles/main.dir/rule
 
-.PHONY : roscpp_generate_messages_cpp
+.PHONY : main
 
 # fast build rule for target.
-roscpp_generate_messages_cpp/fast:
-	cd /root/catkin_ws/build && $(MAKE) -f aim_week2/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make aim_week2/CMakeFiles/roscpp_generate_messages_cpp.dir/build
-.PHONY : roscpp_generate_messages_cpp/fast
+main/fast:
+	cd /root/catkin_ws/build && $(MAKE) -f aim_week2/CMakeFiles/main.dir/build.make aim_week2/CMakeFiles/main.dir/build
+.PHONY : main/fast
 
 # Convenience name for target.
 aim_week2/CMakeFiles/roscpp_generate_messages_eus.dir/rule:
@@ -211,6 +211,36 @@ rosgraph_msgs_generate_messages_nodejs: aim_week2/CMakeFiles/rosgraph_msgs_gener
 rosgraph_msgs_generate_messages_nodejs/fast:
 	cd /root/catkin_ws/build && $(MAKE) -f aim_week2/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make aim_week2/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build
 .PHONY : rosgraph_msgs_generate_messages_nodejs/fast
+
+# Convenience name for target.
+aim_week2/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule:
+	cd /root/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 aim_week2/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
+.PHONY : aim_week2/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+sensor_msgs_generate_messages_cpp: aim_week2/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : sensor_msgs_generate_messages_cpp
+
+# fast build rule for target.
+sensor_msgs_generate_messages_cpp/fast:
+	cd /root/catkin_ws/build && $(MAKE) -f aim_week2/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build.make aim_week2/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build
+.PHONY : sensor_msgs_generate_messages_cpp/fast
+
+# Convenience name for target.
+aim_week2/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule:
+	cd /root/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 aim_week2/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule
+.PHONY : aim_week2/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+sensor_msgs_generate_messages_eus: aim_week2/CMakeFiles/sensor_msgs_generate_messages_eus.dir/rule
+
+.PHONY : sensor_msgs_generate_messages_eus
+
+# fast build rule for target.
+sensor_msgs_generate_messages_eus/fast:
+	cd /root/catkin_ws/build && $(MAKE) -f aim_week2/CMakeFiles/sensor_msgs_generate_messages_eus.dir/build.make aim_week2/CMakeFiles/sensor_msgs_generate_messages_eus.dir/build
+.PHONY : sensor_msgs_generate_messages_eus/fast
 
 # Convenience name for target.
 aim_week2/CMakeFiles/roscpp_generate_messages_py.dir/rule:
@@ -288,6 +318,21 @@ rosgraph_msgs_generate_messages_lisp/fast:
 .PHONY : rosgraph_msgs_generate_messages_lisp/fast
 
 # Convenience name for target.
+aim_week2/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule:
+	cd /root/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 aim_week2/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
+.PHONY : aim_week2/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+sensor_msgs_generate_messages_py: aim_week2/CMakeFiles/sensor_msgs_generate_messages_py.dir/rule
+
+.PHONY : sensor_msgs_generate_messages_py
+
+# fast build rule for target.
+sensor_msgs_generate_messages_py/fast:
+	cd /root/catkin_ws/build && $(MAKE) -f aim_week2/CMakeFiles/sensor_msgs_generate_messages_py.dir/build.make aim_week2/CMakeFiles/sensor_msgs_generate_messages_py.dir/build
+.PHONY : sensor_msgs_generate_messages_py/fast
+
+# Convenience name for target.
 aim_week2/CMakeFiles/roscpp_generate_messages_lisp.dir/rule:
 	cd /root/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 aim_week2/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
 .PHONY : aim_week2/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
@@ -317,6 +362,186 @@ rosgraph_msgs_generate_messages_py/fast:
 	cd /root/catkin_ws/build && $(MAKE) -f aim_week2/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make aim_week2/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
 .PHONY : rosgraph_msgs_generate_messages_py/fast
 
+# Convenience name for target.
+aim_week2/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule:
+	cd /root/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 aim_week2/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule
+.PHONY : aim_week2/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule
+
+# Convenience name for target.
+sensor_msgs_generate_messages_nodejs: aim_week2/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/rule
+
+.PHONY : sensor_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+sensor_msgs_generate_messages_nodejs/fast:
+	cd /root/catkin_ws/build && $(MAKE) -f aim_week2/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/build.make aim_week2/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/build
+.PHONY : sensor_msgs_generate_messages_nodejs/fast
+
+# Convenience name for target.
+aim_week2/CMakeFiles/roscpp_generate_messages_cpp.dir/rule:
+	cd /root/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 aim_week2/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
+.PHONY : aim_week2/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+roscpp_generate_messages_cpp: aim_week2/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
+
+.PHONY : roscpp_generate_messages_cpp
+
+# fast build rule for target.
+roscpp_generate_messages_cpp/fast:
+	cd /root/catkin_ws/build && $(MAKE) -f aim_week2/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make aim_week2/CMakeFiles/roscpp_generate_messages_cpp.dir/build
+.PHONY : roscpp_generate_messages_cpp/fast
+
+# Convenience name for target.
+aim_week2/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule:
+	cd /root/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 aim_week2/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule
+.PHONY : aim_week2/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+sensor_msgs_generate_messages_lisp: aim_week2/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/rule
+
+.PHONY : sensor_msgs_generate_messages_lisp
+
+# fast build rule for target.
+sensor_msgs_generate_messages_lisp/fast:
+	cd /root/catkin_ws/build && $(MAKE) -f aim_week2/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build.make aim_week2/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build
+.PHONY : sensor_msgs_generate_messages_lisp/fast
+
+src/ENU_NED.o: src/ENU_NED.cpp.o
+
+.PHONY : src/ENU_NED.o
+
+# target to build an object file
+src/ENU_NED.cpp.o:
+	cd /root/catkin_ws/build && $(MAKE) -f aim_week2/CMakeFiles/main.dir/build.make aim_week2/CMakeFiles/main.dir/src/ENU_NED.cpp.o
+.PHONY : src/ENU_NED.cpp.o
+
+src/ENU_NED.i: src/ENU_NED.cpp.i
+
+.PHONY : src/ENU_NED.i
+
+# target to preprocess a source file
+src/ENU_NED.cpp.i:
+	cd /root/catkin_ws/build && $(MAKE) -f aim_week2/CMakeFiles/main.dir/build.make aim_week2/CMakeFiles/main.dir/src/ENU_NED.cpp.i
+.PHONY : src/ENU_NED.cpp.i
+
+src/ENU_NED.s: src/ENU_NED.cpp.s
+
+.PHONY : src/ENU_NED.s
+
+# target to generate assembly for a file
+src/ENU_NED.cpp.s:
+	cd /root/catkin_ws/build && $(MAKE) -f aim_week2/CMakeFiles/main.dir/build.make aim_week2/CMakeFiles/main.dir/src/ENU_NED.cpp.s
+.PHONY : src/ENU_NED.cpp.s
+
+src/Quaternion_to_Euler.o: src/Quaternion_to_Euler.cpp.o
+
+.PHONY : src/Quaternion_to_Euler.o
+
+# target to build an object file
+src/Quaternion_to_Euler.cpp.o:
+	cd /root/catkin_ws/build && $(MAKE) -f aim_week2/CMakeFiles/main.dir/build.make aim_week2/CMakeFiles/main.dir/src/Quaternion_to_Euler.cpp.o
+.PHONY : src/Quaternion_to_Euler.cpp.o
+
+src/Quaternion_to_Euler.i: src/Quaternion_to_Euler.cpp.i
+
+.PHONY : src/Quaternion_to_Euler.i
+
+# target to preprocess a source file
+src/Quaternion_to_Euler.cpp.i:
+	cd /root/catkin_ws/build && $(MAKE) -f aim_week2/CMakeFiles/main.dir/build.make aim_week2/CMakeFiles/main.dir/src/Quaternion_to_Euler.cpp.i
+.PHONY : src/Quaternion_to_Euler.cpp.i
+
+src/Quaternion_to_Euler.s: src/Quaternion_to_Euler.cpp.s
+
+.PHONY : src/Quaternion_to_Euler.s
+
+# target to generate assembly for a file
+src/Quaternion_to_Euler.cpp.s:
+	cd /root/catkin_ws/build && $(MAKE) -f aim_week2/CMakeFiles/main.dir/build.make aim_week2/CMakeFiles/main.dir/src/Quaternion_to_Euler.cpp.s
+.PHONY : src/Quaternion_to_Euler.cpp.s
+
+src/WGS84_to_ENU.o: src/WGS84_to_ENU.cpp.o
+
+.PHONY : src/WGS84_to_ENU.o
+
+# target to build an object file
+src/WGS84_to_ENU.cpp.o:
+	cd /root/catkin_ws/build && $(MAKE) -f aim_week2/CMakeFiles/main.dir/build.make aim_week2/CMakeFiles/main.dir/src/WGS84_to_ENU.cpp.o
+.PHONY : src/WGS84_to_ENU.cpp.o
+
+src/WGS84_to_ENU.i: src/WGS84_to_ENU.cpp.i
+
+.PHONY : src/WGS84_to_ENU.i
+
+# target to preprocess a source file
+src/WGS84_to_ENU.cpp.i:
+	cd /root/catkin_ws/build && $(MAKE) -f aim_week2/CMakeFiles/main.dir/build.make aim_week2/CMakeFiles/main.dir/src/WGS84_to_ENU.cpp.i
+.PHONY : src/WGS84_to_ENU.cpp.i
+
+src/WGS84_to_ENU.s: src/WGS84_to_ENU.cpp.s
+
+.PHONY : src/WGS84_to_ENU.s
+
+# target to generate assembly for a file
+src/WGS84_to_ENU.cpp.s:
+	cd /root/catkin_ws/build && $(MAKE) -f aim_week2/CMakeFiles/main.dir/build.make aim_week2/CMakeFiles/main.dir/src/WGS84_to_ENU.cpp.s
+.PHONY : src/WGS84_to_ENU.cpp.s
+
+src/WGS84_to_UTM.o: src/WGS84_to_UTM.cpp.o
+
+.PHONY : src/WGS84_to_UTM.o
+
+# target to build an object file
+src/WGS84_to_UTM.cpp.o:
+	cd /root/catkin_ws/build && $(MAKE) -f aim_week2/CMakeFiles/main.dir/build.make aim_week2/CMakeFiles/main.dir/src/WGS84_to_UTM.cpp.o
+.PHONY : src/WGS84_to_UTM.cpp.o
+
+src/WGS84_to_UTM.i: src/WGS84_to_UTM.cpp.i
+
+.PHONY : src/WGS84_to_UTM.i
+
+# target to preprocess a source file
+src/WGS84_to_UTM.cpp.i:
+	cd /root/catkin_ws/build && $(MAKE) -f aim_week2/CMakeFiles/main.dir/build.make aim_week2/CMakeFiles/main.dir/src/WGS84_to_UTM.cpp.i
+.PHONY : src/WGS84_to_UTM.cpp.i
+
+src/WGS84_to_UTM.s: src/WGS84_to_UTM.cpp.s
+
+.PHONY : src/WGS84_to_UTM.s
+
+# target to generate assembly for a file
+src/WGS84_to_UTM.cpp.s:
+	cd /root/catkin_ws/build && $(MAKE) -f aim_week2/CMakeFiles/main.dir/build.make aim_week2/CMakeFiles/main.dir/src/WGS84_to_UTM.cpp.s
+.PHONY : src/WGS84_to_UTM.cpp.s
+
+src/main.o: src/main.cpp.o
+
+.PHONY : src/main.o
+
+# target to build an object file
+src/main.cpp.o:
+	cd /root/catkin_ws/build && $(MAKE) -f aim_week2/CMakeFiles/main.dir/build.make aim_week2/CMakeFiles/main.dir/src/main.cpp.o
+.PHONY : src/main.cpp.o
+
+src/main.i: src/main.cpp.i
+
+.PHONY : src/main.i
+
+# target to preprocess a source file
+src/main.cpp.i:
+	cd /root/catkin_ws/build && $(MAKE) -f aim_week2/CMakeFiles/main.dir/build.make aim_week2/CMakeFiles/main.dir/src/main.cpp.i
+.PHONY : src/main.cpp.i
+
+src/main.s: src/main.cpp.s
+
+.PHONY : src/main.s
+
+# target to generate assembly for a file
+src/main.cpp.s:
+	cd /root/catkin_ws/build && $(MAKE) -f aim_week2/CMakeFiles/main.dir/build.make aim_week2/CMakeFiles/main.dir/src/main.cpp.s
+.PHONY : src/main.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -326,20 +551,41 @@ help:
 	@echo "... install/strip"
 	@echo "... install/local"
 	@echo "... list_install_components"
-	@echo "... roscpp_generate_messages_cpp"
+	@echo "... rebuild_cache"
+	@echo "... edit_cache"
+	@echo "... test"
+	@echo "... main"
 	@echo "... roscpp_generate_messages_eus"
 	@echo "... rosgraph_msgs_generate_messages_nodejs"
+	@echo "... sensor_msgs_generate_messages_cpp"
+	@echo "... sensor_msgs_generate_messages_eus"
 	@echo "... roscpp_generate_messages_py"
 	@echo "... install"
 	@echo "... roscpp_generate_messages_nodejs"
 	@echo "... rosgraph_msgs_generate_messages_cpp"
 	@echo "... rosgraph_msgs_generate_messages_eus"
 	@echo "... rosgraph_msgs_generate_messages_lisp"
-	@echo "... test"
-	@echo "... rebuild_cache"
-	@echo "... edit_cache"
+	@echo "... sensor_msgs_generate_messages_py"
 	@echo "... roscpp_generate_messages_lisp"
 	@echo "... rosgraph_msgs_generate_messages_py"
+	@echo "... sensor_msgs_generate_messages_nodejs"
+	@echo "... roscpp_generate_messages_cpp"
+	@echo "... sensor_msgs_generate_messages_lisp"
+	@echo "... src/ENU_NED.o"
+	@echo "... src/ENU_NED.i"
+	@echo "... src/ENU_NED.s"
+	@echo "... src/Quaternion_to_Euler.o"
+	@echo "... src/Quaternion_to_Euler.i"
+	@echo "... src/Quaternion_to_Euler.s"
+	@echo "... src/WGS84_to_ENU.o"
+	@echo "... src/WGS84_to_ENU.i"
+	@echo "... src/WGS84_to_ENU.s"
+	@echo "... src/WGS84_to_UTM.o"
+	@echo "... src/WGS84_to_UTM.i"
+	@echo "... src/WGS84_to_UTM.s"
+	@echo "... src/main.o"
+	@echo "... src/main.i"
+	@echo "... src/main.s"
 .PHONY : help
 
 
