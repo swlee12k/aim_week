@@ -1,6 +1,7 @@
 #include <ros/ros.h>
 #include <morai_msgs/GPSMessage.h>
 #include <sensor_msgs/Imu.h>
+#include <morai_msgs/CtrlCmd.h>
 
 #include <aim_week3/function.hpp>
 
@@ -88,10 +89,12 @@ int main(int argc, char **argv)
     ros::Subscriber gps_sub = n.subscribe("/gps", 1000, GPSCallback);
     ros::Subscriber imu_sub = n.subscribe("/imu", 1000, IMUCallback);
 
+    //Publisher
+    ros::Publisher ctrl_pub = n.advertise<morai_msgs::CtrlCmd>("/ctrl_cmd", 10);
 
     // Pure Pursuit 설정값
     double lookahead_distance = 5.0;
-    double wheelbase = 2.7;
+    double wheelbase = 3.01;
 
     double target_x = 0.0;
     double target_y = 0.0;
@@ -103,7 +106,7 @@ int main(int argc, char **argv)
     double gain = 1.0;
 
     // 임시 속도
-    double velocity = 5.0;
+    double velocity = 20.0;
 
     double stanley_steering = 0.0;
 
@@ -114,22 +117,42 @@ int main(int argc, char **argv)
         // callback 실행
         ros::spinOnce();
 
+        lookahead_distance = 3.0 + 0.2 * velocity;
+
         // Pure Pursuit
-
         find_target_point(pos_x, pos_y, path, lookahead_distance, target_x, target_y);
-
         pure_pursuit(pos_x, pos_y, target_x, target_y, heading, wheelbase, lookahead_distance, pure_pursuit_steering);
 
-
-        
         // Stanley
-    
         // velocity가 0이면 Stanley 계산 불가능
         if (velocity > 0.1)
         {
             stanley(pos_x, pos_y, heading, path, velocity, gain, stanley_steering);
         }
 
+        // MORAI 제어 명령
+        morai_msgs::CtrlCmd ctrl_msg;
+
+        // 속도 제어 방식 사용
+        ctrl_msg.longlCmdType = 2; // 1: Torque, 2: Velocity, 3: Acceleration
+
+        // 차량 속도
+        ctrl_msg.velocity = velocity;
+
+        // 앞바퀴 조향
+        ctrl_msg.front_steer = -pure_pursuit_steering;;
+
+        // 뒷바퀴 조향 안 함
+        ctrl_msg.rear_steer = 0.0;
+
+        // 사용하지 않는 값
+        ctrl_msg.accel = 0.0;
+        ctrl_msg.brake = 0.0;
+        ctrl_msg.acceleration = 0.0;
+
+
+        // MORAI로 제어 명령 전송
+        ctrl_pub.publish(ctrl_msg);
 
         // 결과 출력
         ROS_INFO("Position : x = %.3f, y = %.3f", pos_x, pos_y);

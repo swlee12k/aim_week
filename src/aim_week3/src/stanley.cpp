@@ -1,11 +1,9 @@
 #include <cmath>
 #include <aim_week3/function.hpp>
 
-int nearest_index = 0;
-
 void stanley(double pos_x, double pos_y, double heading, const std::vector<Point>& path, double velocity, double gain, double &steering_angle)
 {
-     
+     int nearest_index = 0;
      double min_distance = 999999.0;
 
         // 차량에서 가장 가까운 path point 찾기
@@ -29,6 +27,12 @@ void stanley(double pos_x, double pos_y, double heading, const std::vector<Point
     double path_heading = atan2(dy, dx);
 
     double heading_error = path_heading - heading;
+
+    while (heading_error > M_PI)
+        heading_error -= 2.0 * M_PI;
+
+    while (heading_error < -M_PI)
+        heading_error += 2.0 * M_PI;
 
     double error_x = path[nearest_index].x - pos_x;
     double error_y = path[nearest_index].y - pos_y;

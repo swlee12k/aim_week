@@ -10,6 +10,12 @@ void pure_pursuit
     double angle_to_target = atan2(dy, dx); //차량과 target point 사이의 각도 계산
     double alpha = angle_to_target - heading; //차량의 heading과 target point 사이의 각도 차이 계산
 
+    while (alpha > M_PI)
+        alpha -= 2.0 * M_PI;
+
+    while (alpha < -M_PI)
+        alpha += 2.0 * M_PI;
+    
     double curvature = (2 * sin(alpha)) / lookahead_distance; //곡률 계산
 
     steering_angle = atan(curvature * wheelbase); //조향각 계산
