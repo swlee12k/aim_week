@@ -764,30 +764,6 @@ std_msgs/Header.h
 
 /root/catkin_ws/src/aim_week2/include/aim_week2/Transform.hpp
 
-/root/catkin_ws/src/aim_week2/src/ENU_NED.cpp
-cmath
--
-aim_week2/Transform.hpp
--
-
-/root/catkin_ws/src/aim_week2/src/Quaternion_to_Euler.cpp
-cmath
--
-aim_week2/Transform.hpp
--
-
-/root/catkin_ws/src/aim_week2/src/WGS84_to_ENU.cpp
-cmath
--
-aim_week2/Transform.hpp
--
-
-/root/catkin_ws/src/aim_week2/src/WGS84_to_UTM.cpp
-cmath
--
-aim_week2/Transform.hpp
--
-
 /root/catkin_ws/src/aim_week2/src/main.cpp
 ros/ros.h
 -

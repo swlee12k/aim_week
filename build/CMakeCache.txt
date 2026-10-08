@@ -406,6 +406,12 @@ aim_week2_BINARY_DIR:STATIC=/root/catkin_ws/build/aim_week2
 //Value Computed by CMake
 aim_week2_SOURCE_DIR:STATIC=/root/catkin_ws/src/aim_week2
 
+//Value Computed by CMake
+aim_week3_BINARY_DIR:STATIC=/root/catkin_ws/build/aim_week3
+
+//Value Computed by CMake
+aim_week3_SOURCE_DIR:STATIC=/root/catkin_ws/src/aim_week3
+
 //The directory containing a CMake configuration file for catkin.
 catkin_DIR:PATH=/opt/ros/noetic/share/catkin/cmake
 
@@ -489,13 +495,13 @@ message_generation_DIR:PATH=/opt/ros/noetic/share/message_generation/cmake
 message_runtime_DIR:PATH=/opt/ros/noetic/share/message_runtime/cmake
 
 //Value Computed by CMake
-morai_msgs_BINARY_DIR:STATIC=/root/catkin_ws/build/MORAI-ROS_morai_msgs
+morai_msgs_BINARY_DIR:STATIC=/root/catkin_ws/build/morai_msgs
 
 //The directory containing a CMake configuration file for morai_msgs.
 morai_msgs_DIR:PATH=/root/catkin_ws/devel/share/morai_msgs/cmake
 
 //Value Computed by CMake
-morai_msgs_SOURCE_DIR:STATIC=/root/catkin_ws/src/MORAI-ROS_morai_msgs
+morai_msgs_SOURCE_DIR:STATIC=/root/catkin_ws/src/morai_msgs
 
 //The directory containing a CMake configuration file for rosconsole.
 rosconsole_DIR:PATH=/opt/ros/noetic/share/rosconsole/cmake
@@ -681,7 +687,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=7
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=8
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

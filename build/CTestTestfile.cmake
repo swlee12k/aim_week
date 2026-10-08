@@ -5,6 +5,7 @@
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.
 subdirs("gtest")
-subdirs("MORAI-ROS_morai_msgs")
+subdirs("morai_msgs")
 subdirs("aim_week2")
+subdirs("aim_week3")
 subdirs("aim_week1")

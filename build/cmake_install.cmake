@@ -146,8 +146,9 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/root/catkin_ws/build/gtest/cmake_install.cmake")
-  include("/root/catkin_ws/build/MORAI-ROS_morai_msgs/cmake_install.cmake")
+  include("/root/catkin_ws/build/morai_msgs/cmake_install.cmake")
   include("/root/catkin_ws/build/aim_week2/cmake_install.cmake")
+  include("/root/catkin_ws/build/aim_week3/cmake_install.cmake")
   include("/root/catkin_ws/build/aim_week1/cmake_install.cmake")
 
 endif()
